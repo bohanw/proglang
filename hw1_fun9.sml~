@@ -1,0 +1,17 @@
+fun number_before_reaching_sum(sum:int, ls:int list) = 
+    let 
+	(* helper function returns n the maximum number not exceeding the sum*)
+	fun cnt(ls:int list, accu:int,n:int) =
+	    if hd ls + accu >= sum then n
+           else cnt(tl ls, hd ls + accu, n+1)
+    in
+	cnt(ls, 0,0)
+end
+
+(* Use previous function   number_before_reaching_sum to calculate the month*)
+fun what_month(day:int) =
+    let 
+	val days = [31, 28,31,30,31,30,31,31,30,31,30,31]
+    in
+	number_before_reaching_sum(day, days)
+end
